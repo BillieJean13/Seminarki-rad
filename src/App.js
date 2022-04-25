@@ -1,14 +1,14 @@
 import './App.css';
 import { useState, useEffect } from "react";
 
-import Input from "./Components/Input";
-import Message from "./Components/Message";
-import Login from './Components/Login/Login/Login';
+import Input from "./Components/Chat Messages/Input";
+import Message from "./Components/Chat Messages/Message";
+import Login from './Components/Login/Login';
 
-import avatarAstronaut from "./Components/Assets/avatarAstronaut.svg"
-import avatarNinja from "./Components/Assets/avatarNinja.svg"
-import avatarDetective from "./Components/Assets/avatarDetective.svg"
-
+import avatarWoman from "./Components/Assets/Avatar04.svg"
+import avatarMan from "./Components/Assets/Avatar06.svg"
+import avatarGirl from "./Components/Assets/Avatar07.svg"
+import avatarBoy from "./Components/Assets/Avatar05.svg"
 
 
 function randomColor() { 
@@ -19,31 +19,29 @@ function App() {
 
   const [user, setUser] = useState({
     username: '',
-    randomColor: randomColor(),
-    avatar: avatarNinja, 
+    color: randomColor(),
+    avatar: avatarMan, 
     avatarId: 0
   });
 
-  const [messages, setMessages] = useState([]); 
+  const [messageArray, setMessageArray] = useState([]); 
   const [drone, setDrone] = useState(); 
-  const [users, setUsers] = useState(); 
+  const [userID, setUserID] = useState(); 
 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   
-  const [usernameSubmitted, setUsernameSubmitted] = useState(false)
 
 
   useEffect(() => {
-    if(usernameSubmitted){
-      console.log(`ovo je to ${usernameSubmitted}`)
+    if(isLoggedIn){
       const drone = new window.Scaledrone("feNvXbkiduwaGrAy", { 
         data: user,
       });
       setDrone(drone);
     }
     
-  }, [usernameSubmitted]); 
+  }, [isLoggedIn]); 
 
 useEffect(() => {
   if (drone) {  
@@ -64,18 +62,18 @@ useEffect(() => {
       });
 
       chatRoom.on("data", (text, chatUser) => { 
-         setUsers(drone.clientId);
+         setUserID(drone.clientId);
         
 
         const username = chatUser.clientData.username; 
         const chatUserID = chatUser.id;
-        const userColor = chatUser.clientData.randomColor;
+        const userColor = chatUser.clientData.color;
         const userAvatar = chatUser.clientData.avatar;
         const timeStamp = new Date()
 
         console.log(`text je ${text}`)
         
-        setMessages((oldArray) => [
+        setMessageArray((oldArray) => [
           ...oldArray,
           { text, username, userColor, chatUserID, user, timeStamp, userAvatar }, 
         ]);
@@ -93,10 +91,7 @@ useEffect(() => {
     }
   };
 
-  const loginHandler = (avatar, username) => {
-    setUser(() => {
-      return { id: drone.clientId, avatar: avatar, username: username }; 
-    }); 
+  const loginHandler = (username) => {
     setIsLoggedIn(true); 
     console.log('User', username, 'connected!');
   };
@@ -110,7 +105,7 @@ useEffect(() => {
 
   return (
     <div className="App">
-    {!isLoggedIn && <Login user={user} setUser={setUser} usernameSubmitted={usernameSubmitted} setUsernameSubmitted={setUsernameSubmitted} onLogin={loginHandler}/>} 
+    {!isLoggedIn && <Login user={user} setUser={setUser} randomColor={randomColor} onLogin={loginHandler}/>} 
     {isLoggedIn && 
       
       <>
@@ -118,7 +113,7 @@ useEffect(() => {
           <h1>My Chat App</h1>
         </div>
         <div>
-          <Message messages={messages} users={users}/>
+          <Message messages={messageArray} userID={userID}/>
           <Input onSendMessage={onSendMessage} />
         </div>
       </>

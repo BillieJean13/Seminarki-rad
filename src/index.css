@@ -8,15 +8,20 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #faf5f5;
 }
 
 .App > div > div:first-of-type {
   margin-bottom: 20px;
 }
-
+.login form h5{
+  margin: 0;
+  margin-bottom: 35px;
+  color: gray;
+}
 
 .App-header {
-  background-color: #d75759;
+  background-color: #598989;
   overflow: visible;
   width: 100%;
   text-align: center;
@@ -74,7 +79,7 @@ body{
 
 .Message-content > .username {
   display: block;
-  color: gray;
+  color: rgb(60, 55, 55);
   font-weight: 600;
   font-size: 16px;
   line-height: 26px; 
@@ -85,7 +90,7 @@ body{
   max-width: 800px;
   margin: 0;
   border-radius: 16px 0px 16px 16px;
-  background-color: #168ca6;
+  background-color: #598989;
   color: white;
   display: inline-block;
 }
@@ -98,8 +103,8 @@ body{
 
 .otherMember > .Message-content .text {
   border-radius: 0px 16px 16px 16px;
-  background-color: #F5F5F5;
-  color: #141414
+  background-color: #cfba92;
+  color: #211e1e
 }
 
 .currentMember > .Message-content .text{
@@ -130,15 +135,14 @@ input::placeholder{
   color: #C7C3C3;
 }
 
-.Button {
+.inputButton {
   padding: 5px 10px;
   font-size: 16px;
-  background-color: #168ca6;
+  background-color: #598989;
   color: white;
   border: none;
   width: 20px;
   height: 20px;
-  border-radius: 8px;
   margin-left: 10px;
   background: url('./Components/Assets/sendArrow.png') no-repeat;
   align-self: center;
@@ -146,12 +150,14 @@ input::placeholder{
 
 .login {
   margin: 5rem auto 3rem auto;
-  padding: 1.5rem;
-  width: 540px; 
+  padding: 1rem;
+  background-color: #faf5f5;
+  width: 540; 
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 70px 0;
 }
 
 .login form {
@@ -164,7 +170,7 @@ input::placeholder{
 .login label {
   font-weight: bold;
   margin-bottom: 1rem;
-  color:#d75759;
+  color:#598989;
 }
 
 .login svg {
@@ -178,8 +184,8 @@ input::placeholder{
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 0.5rem;
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .login label:first-of-type{
@@ -187,17 +193,20 @@ input::placeholder{
 }
 
 .login h1{
-  color:#d75759;
+  color:#598989;
+  margin: 0;
+  font-size: 46px;
+  margin-bottom: 40px;
 }
 
 .login .inputText:focus {
   outline: none;
-  border-color: #1ecd97;
+  border-color: #2a6972d8;
 }
 
 
 .invalid .inputText {
-  border-color: red;
+  border-color: #430db7bd;
 }
 
 @media screen and (max-width: 600px) {
@@ -231,26 +240,29 @@ input::placeholder{
   border-radius: 12px;
   box-shadow: 0 2px 8px var(--shadow);
   justify-self: center;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 @media screen and (max-width: 600px) {
   .card {
     border-radius: 0;
     box-shadow: none;
+    width: 90%;
+  }
+  .avatars{
+    width: 90%;
+
   }
 }
 
 button {
   padding: auto;
   outline: none;
-  height: 40px;
+  height: 80px;
   text-align: center;
-  width: 120px;
-  border-radius: 12px;
-  background-color: #168ca6;
-  border: 1px solid #168ca6;
+  width: 80px;
+  border-radius: 50%;
+  background-color: #689E9E;
+  border: 1px solid #598989;
   color: white;
   letter-spacing: 1px;
   text-shadow: 0;
@@ -276,19 +288,23 @@ button:active:disabled {
   color: var(--text);
   background: inherit;
   cursor: not-allowed;
+  opacity: 0.3;
 }
 
 .inputColor{
   padding: 0;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: 0;
+  border-radius: 0;
 }
 .login label{
   margin: 0px;
+  font-size: 22px;
 }
 
 .avatars {
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 20px;
   display: flex;
 }
@@ -297,9 +313,7 @@ button:active:disabled {
   cursor: pointer;
   padding: 25px;
   transition: 0.3s box-shadow;
-  border-radius: 13px;
-  margin-right: 25px;
-  margin-left: 25px;
+  border-radius: 138px;
 }
 
 .item:last-child {
@@ -313,3 +327,23 @@ button:active:disabled {
 .item:hover{
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.16);
 }
+
+/*
+.picker-container {
+  position: relative;
+  width: 10px;
+}
+.emoji-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 5px;
+}
+.input-style {
+  padding: 7px 30px 7px 10px;
+  width: calc(100% - 40px);
+  border-radius: 3px;
+  border: 1px solid #999;
+  margin-bottom: 10px;
+} 
+*/
